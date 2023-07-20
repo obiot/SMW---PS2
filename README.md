@@ -7,7 +7,8 @@ Last update: February 23, 2006
 
 # Copyright
 
-Original Game by Florian Hufsky and Michael Schaffer.
+Original Game by Florian Hufsky and Michael Schaffer (see [here](/src/README.txt)).
+
 Playstation 2 version by Olivier "evilo" Biot and The Froggies.
 
 #History
@@ -17,13 +18,7 @@ Playstation 2 version by Olivier "evilo" Biot and The Froggies.
 As promised, a little update to add a great feature : Multitap 
 support thanks to the work of Drakonite on the SDL library
 (as well as others little fixes to the driver, but that should 
-be however not visible). Also, I saw a lot of complains about
-the outdated version on which the PS2 port is based, but all I 
-can say is : don't discourage people, and try to enjoy this
-version anyway(that was initially a try for the PS2 SDL library) 
-while waiting for a fresh new port based on the version 1.6 !
-
-
+be however not visible).
 - February 15th, 2006 - Super Mario War v1.10b5
 It's still a wip version, and still need some rework, but since 
 it's already playable and fun, I decided to release a first version.
