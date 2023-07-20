@@ -1,0 +1,156 @@
+
+------------------------------------------------------------------------------
+ the SuperMarioWar how-the-game-works file
+ ------------------------------------------
+								2004 © Florian Hufsky
+								http://jnrdev.weed-crew.net
+
+								have a lot of fun :)
+------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------
+ general notes
+------------------------------------------------------------------------------
+
+when using someone elses code i'm always confused.
+i don't know where to start or where to look for specific things, so it takes
+quite a while to get into the whole thing.
+
+only the code for airstrike had a file where the basic game logic etc was
+explained. i think this is a great idea, so i'll add such a thing to smw.
+
+i hope this guide helps you when looking through the super mario war code.
+if you have any suggestions send me a mail: fhufsky@phorus.at
+
+8.2.2004, Florian Hufsky
+
+-------------------
+i know that the last changes are from 10.2.2004, but the major game structure
+hasn't changed and the new stuff (menu, sounds), are not worth explaining
+(sounds for being too easy and menu for being too crappy).
+20.2.2004
+-------------------
+
+
+last changes:
+10.2.2004
+
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------
+ where to look for specific things
+------------------------------------------------------------------------------
+
+ player to player collision detection
+	player.cpp
+		CPlayer::think()
+
+
+ player to map collision detection
+	player.cpp
+		CPlayer::collision_detection_map()
+		CPlayer::move()
+
+
+ input handling
+	player.cpp
+		CPlayer::move()
+
+
+ map loading / drawing / ...
+	map.cpp
+
+ 
+ game loop
+	main.cpp
+
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------
+ how it works
+------------------------------------------------------------------------------
+
+ during the game loop first all players are moved;
+	CPlayer::move()
+		-> the movement vectors are updated by input
+		-> player-map collision detectio is performed
+		the technique described in jnrdev #1 is used
+			-> http://jnrdev.weed-crew.net/jnrdev1
+		and i've added some very ugly code to make the player move through
+		the side of the screen and appear ont he other side
+
+ now we've got the new position of every object, which is used for
+ player-player collision detection.
+ we call every players think() function, which handles this.
+	CPlayer::think()
+		for(each other player){
+			1. test if we pushed the other player
+			2. test if we stomped the other player
+		}
+		pushing / stomping works almost the same, so i'll only explain how
+		stomping testing works (btw: stomping = jump-on-head-killing)
+		
+		if( left or right edge touches the other object ){
+			if(bottom is inside the object){
+				if(old bottom is above the top of the object){
+					-> we just jumped on someone else
+				}
+			}
+		}
+
+
+ that's the whole game logic, now the whole thing is drawn.
+ the only thing to note here is that CMap::draw() and CPlayer::draw()
+ use y_rect.h as y offset for drawing.
+ this is used for shaking the screen when a player jumps on another player
+ 
+ when a player stomps another one the function crunch_screen() is called
+ which starts shaking the screen.
+ it's basically a screen that's jumping.
+ but instead of up it's jumping downwards.
+
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------
+ the eyecandy system
+------------------------------------------------------------------------------
+
+ i've added a nice eye candy system to smw (eye candy = non collidable
+ objects).
+
+ all the eyecandys are stored in eyecandy_container eyecandycont.
+
+ if you want to add a new eyecandy, create a child class of eyecandy,
+ code constructor, draw and update functions and add it to the eyecandy list.
+ (eyecandycont.add())
+
+
+ the system is quite cool: all the eyecandy objects have two functions:
+ update which updates the eyecandy (movement, ...) and draw which draws the
+ thing.
+ every child class needs it's own implementation of both functions.
+
+ by calling eyecandy_container::add you cann add a eyecandy to the list.
+ and with eyecandy_container::remove you can delete it (this->index contains
+ the number remove() needs.
+
+ in every frame all eyecandys are updated and drawn.
+
+ i'm very happy with the code - it's clean and very easy to extend.
+
+------------------------------------------------------------------------------
+
+
+
+2004 © Florian Hufsky
+http://jnrdev.weed-crew.net
+http://jnrdev.weed-crew.net/smw

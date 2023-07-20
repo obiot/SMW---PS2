@@ -1,0 +1,82 @@
+------------------------------------------------------------------------------
+ SMW TODO
+ --------------------------------------
+				mainly just to remind me what i want to add
+------------------------------------------------------------------------------
+
+
+
+ next release:
+
+  gtc:
+   + chicken sound
+   + chicken grafik
+
+  sdl_mixer instead of fmod
+
+  different blocks
+
+
+------------------------------------------------------------------------------
+
+
+ wishlist:
+
+ LAN / Internet support
+
+ speedup o2o coldec:
+   l1, r1, t1, b1 einmal pro frame pro objekt berechnen.
+   +t1old, b1old speichern.
+   (alles int)
+
+   -> kann auch für o2m coldec genutzt werden!
+
+
+  configurable controls (->config file)
+
+  end game scoreboard + doublekill, died, ...
+
+  ->linux port
+
+  ice blocks
+  destroyable blocks
+  lava
+  spikes
+
+  seperate game logic - draw stuff for smoother gameplay on slower machines
+
+  drawmap(): (%8)*32 is slow -> precalc x,y verwenden oder tileset coord anders (2d)
+
+  new gfx (no nintendo stuff)
+
+
+------------------------------------------------------------------------------
+ things that are cool, but i don't want to do them
+	(->someone else might add them)
+------------------------------------------------------------------------------
+
+  those jumppad thingies (white blocks with a ?note? on them)
+  "POW" block (-> stuns all other marios)
+
+
+  leveleditor
+   2 layers
+   save map as / open map
+  
+  timebased movement
+   or hardwired fps
+   or auto frameskipping
+   or like in "rubber pig" by david olofson
+
+  remove top tile row level bug
+  wrap player above the screen
+
+  cgame, more dynamic memory allocation.
+  minimize memory usage	more dynamic tiles
+
+  items (stars, mushrooms, ...)
+  toads / enemys
+
+  press down on solid-on-top-only tiles -> fall down
+
+  mario background musik

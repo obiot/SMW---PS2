@@ -1,0 +1,12 @@
+
+In order to compile and run the game correctly, some libs must be modified :
+
+
+SDL_mixer :
+-----------
+In the Makefile, 
+change the value of HAVE_MP3_MUSIC to 1 to enable MP3 file format
+
+
+-- evilo.
+
